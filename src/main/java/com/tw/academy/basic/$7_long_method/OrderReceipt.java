@@ -21,7 +21,6 @@ public class OrderReceipt {
         return order.getCustomerName();
     }
 
-    //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
         appendReceiptHeader(output);
