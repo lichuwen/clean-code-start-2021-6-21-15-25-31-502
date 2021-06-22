@@ -5,9 +5,9 @@ public class Order {
     private final User user;
     private int orderNumber;
 
-    private String buyerName;
-    private String buyerPhoneNumber;
-    private String buyerAddress;
+    private final String buyerName;
+    private final String buyerPhoneNumber;
+    private final String buyerAddress;
 
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
