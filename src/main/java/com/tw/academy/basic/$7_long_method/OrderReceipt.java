@@ -9,7 +9,9 @@ package com.tw.academy.basic.$7_long_method;
  */
 public class OrderReceipt {
     private Order order;
-
+    private static final double TAX_RATE = .10;
+    private static final char TAB = '\t';
+    private static final char LINE_BREAK = '\n';
     public OrderReceipt(Order order) {
         this.order = order;
     }
@@ -37,16 +39,16 @@ public class OrderReceipt {
         double tot = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             output.append(lineItem.getDescription());
-            output.append('\t');
+            output.append(TAB);
             output.append(lineItem.getPrice());
-            output.append('\t');
+            output.append(TAB);
             output.append(lineItem.getQuantity());
-            output.append('\t');
+            output.append(TAB);
             output.append(lineItem.totalAmount());
-            output.append('\n');
+            output.append(LINE_BREAK);
 
             // calculate sales tax @ rate of 10%
-            double salesTax = lineItem.totalAmount() * .10;
+            double salesTax = lineItem.totalAmount() * TAX_RATE;
             totSalesTx += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
@@ -54,10 +56,10 @@ public class OrderReceipt {
         }
 
         // prints the state tax
-        output.append("Sales Tax").append('\t').append(totSalesTx);
+        output.append("Sales Tax").append(TAB).append(totSalesTx);
 
         // print total amount
-        output.append("Total Amount").append('\t').append(tot);
+        output.append("Total Amount").append(TAB).append(tot);
         return output.toString();
     }
 }
