@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Order {
     private final Customer customer;
-    String customerName;
-    String address;
+    private final String customerName;
+    private final String address;
     List<LineItem> lineItems;
 
     public Order(Customer customer, List<LineItem> lineItems) {
