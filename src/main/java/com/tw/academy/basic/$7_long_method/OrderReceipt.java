@@ -34,17 +34,8 @@ public class OrderReceipt {
 //        output.append(order.getCustomerLoyaltyNumber());
 
         // prints lineItems
-        double totSalesTx = 0d;
-        double tot = 0d;
         appendLineItems(output);
-
-        totSalesTx = calculateTotalSalesTax();
-        tot = calculateTotal();
-        // prints the state tax
-        output.append("Sales Tax").append(TAB).append(totSalesTx);
-
-        // print total amount
-        output.append("Total Amount").append(TAB).append(tot);
+        appendTaxAndTotalAmount(output);
         return output.toString();
     }
 
@@ -71,5 +62,10 @@ public class OrderReceipt {
             output.append(lineItem.getQuantity()).append(TAB);
             output.append(lineItem.totalAmount()).append(LINE_BREAK);
         }
+    }
+
+    private void appendTaxAndTotalAmount(StringBuilder output) {
+        output.append("Sales Tax").append(TAB).append(calculateTotalSalesTax());
+        output.append("Total Amount").append(TAB).append(calculateTotal());
     }
 }
