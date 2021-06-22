@@ -3,6 +3,8 @@ package com.tw.academy.basic.$7_long_method;
 import java.util.List;
 
 public class Order {
+    private static final double TAX_RATE = .10;
+
     private final Customer customer;
     List<LineItem> lineItems;
 
@@ -21,5 +23,13 @@ public class Order {
 
     public List<LineItem> getLineItems() {
         return lineItems;
+    }
+
+    public double calculateTotalSalesTax() {
+        return this.lineItems.stream().map(LineItem::totalAmount).mapToDouble(item -> item * TAX_RATE).sum();
+    }
+
+    public double calculateTotal() {
+        return this.lineItems.stream().mapToDouble(LineItem::totalAmount).sum() + calculateTotalSalesTax();
     }
 }

@@ -9,7 +9,6 @@ package com.tw.academy.basic.$7_long_method;
  */
 public class OrderReceipt {
     private final Order order;
-    private static final double TAX_RATE = .10;
     private static final char TAB = '\t';
     private static final char LINE_BREAK = '\n';
     public OrderReceipt(Order order) {
@@ -38,13 +37,7 @@ public class OrderReceipt {
         builder.append(order.getCustomerName()).append(order.getCustomerAddress()).append(LINE_BREAK);
     }
 
-    private double calculateTotalSalesTax() {
-        return order.getLineItems().stream().map(LineItem::totalAmount).mapToDouble(item -> item * TAX_RATE).sum();
-    }
 
-    private double calculateTotal() {
-        return order.getLineItems().stream().mapToDouble(LineItem::totalAmount).sum() + calculateTotalSalesTax();
-    }
 
     private void appendLineItems(StringBuilder output) {
         for (LineItem lineItem : order.getLineItems()) {
@@ -56,7 +49,7 @@ public class OrderReceipt {
     }
 
     private void appendTaxAndTotalAmount(StringBuilder output) {
-        output.append("Sales Tax").append(TAB).append(calculateTotalSalesTax());
-        output.append("Total Amount").append(TAB).append(calculateTotal());
+        output.append("Sales Tax").append(TAB).append(order.calculateTotalSalesTax());
+        output.append("Total Amount").append(TAB).append(order.calculateTotal());
     }
 }
