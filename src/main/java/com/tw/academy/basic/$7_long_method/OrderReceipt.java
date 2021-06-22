@@ -24,16 +24,8 @@ public class OrderReceipt {
     //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
-
-        // print headers
         appendReceiptHeader(output);
-
-        // print date, bill no, customer name
-//        output.append("Date - " + order.getDate();
         appendCustomerInfo(output);
-//        output.append(order.getCustomerLoyaltyNumber());
-
-        // prints lineItems
         appendLineItems(output);
         appendTaxAndTotalAmount(output);
         return output.toString();
