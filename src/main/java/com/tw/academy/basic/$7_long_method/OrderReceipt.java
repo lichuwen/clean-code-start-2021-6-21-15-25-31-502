@@ -8,7 +8,7 @@ package com.tw.academy.basic.$7_long_method;
  * @since   2018-1-1
  */
 public class OrderReceipt {
-    private Order order;
+    private final Order order;
     private static final double TAX_RATE = .10;
     private static final char TAB = '\t';
     private static final char LINE_BREAK = '\n';
