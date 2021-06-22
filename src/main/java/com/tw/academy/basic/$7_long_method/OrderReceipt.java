@@ -47,13 +47,12 @@ public class OrderReceipt {
             output.append(LINE_BREAK);
 
             // calculate sales tax @ rate of 10%
-            double salesTax = lineItem.totalAmount() * TAX_RATE;
-            totSalesTx += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            tot += lineItem.totalAmount() + salesTax;
         }
 
+        totSalesTx = calculateTotalSalesTax();
+        tot = calculateTotal();
         // prints the state tax
         output.append("Sales Tax").append(TAB).append(totSalesTx);
 
@@ -68,5 +67,22 @@ public class OrderReceipt {
 
     private void appendCustomerInfo(StringBuilder builder) {
         builder.append(order.getCustomerName()).append(order.getCustomerAddress()).append(LINE_BREAK);
+    }
+
+    private double calculateTotalSalesTax() {
+        return order.getLineItems().stream().map(LineItem::totalAmount).mapToDouble(item -> item * TAX_RATE).sum();
+    }
+
+    private double calculateTotal() {
+        return order.getLineItems().stream().mapToDouble(LineItem::totalAmount).sum() + calculateTotalSalesTax();
+    }
+
+    private void appendLineItems(StringBuilder output) {
+        for (LineItem lineItem : order.getLineItems()) {
+            output.append(lineItem.getDescription()).append(TAB);
+            output.append(lineItem.getPrice()).append(TAB);
+            output.append(lineItem.getQuantity()).append(TAB);
+            output.append(lineItem.totalAmount()).append(LINE_BREAK);
+        }
     }
 }
