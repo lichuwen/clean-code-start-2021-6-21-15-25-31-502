@@ -30,8 +30,7 @@ public class OrderReceipt {
 
         // print date, bill no, customer name
 //        output.append("Date - " + order.getDate();
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        appendCustomerInfo(output);
 //        output.append(order.getCustomerLoyaltyNumber());
 
         // prints lineItems
@@ -65,5 +64,9 @@ public class OrderReceipt {
 
     private void appendReceiptHeader(StringBuilder builder) {
         builder.append("======Printing Orders======\n");
+    }
+
+    private void appendCustomerInfo(StringBuilder builder) {
+        builder.append(order.getCustomerName()).append(order.getCustomerAddress()).append(LINE_BREAK);
     }
 }
